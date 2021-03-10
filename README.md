@@ -21,6 +21,6 @@
 
 ## Website sketch
 
-<img src="images/sketchOne.png">
-<img src="images/sketchTwo.png">
-<img src="images/sketchThree.png">
+<img src="images/sketchOneC.png">
+<img src="images/sketchTwoC.png">
+<img src="images/sketchThreeC.png">
