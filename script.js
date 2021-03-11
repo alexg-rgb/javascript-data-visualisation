@@ -458,35 +458,43 @@ var ctxThree = document.getElementById("charThree");
 
 
 var count = 10;
-var dataPointsThree=[];
-var dataPointsThreeUpdate=[];
+var dataPointsThree = [];
+var dataPointsThreeUpdate = [];
 
-  async function chartThreeBuild() {
-    let response = await fetch("https://canvasjs.com/services/data/datapoints.php?xstart=1&ystart=10&length=10&type=json");
+async function chartThreeBuild() {
+  let response = await fetch("https://canvasjs.com/services/data/datapoints.php?xstart=1&ystart=10&length=10&type=json");
 
-    dataPointsThree = await response.json();
-    let x = "x";
-    let y = "y";
-    dataPointsThree = dataPointsThree.map(dataPointsThree => Object.assign({x:dataPointsThree[0],y:dataPointsThree[1]}, ));
-    console.log(dataPointsThree);
-    var xAxis = dataPointsThree.map(({x}) => x);
-    var yAxis = dataPointsThree.map(({y}) => y);
-    var myHopeChart = new Chart(ctxThree, {
-      type: 'line',
-      data: {
-          labels: xAxis,
-          datasets: [{
-              label: 'Live Chart', 
-              data: yAxis, 
-              fill: false,
-              borderColor: '#2196f3', 
-              backgroundColor: '#2196f3', 
-              borderWidth: 1 
-          }]},
-      options: {
-        responsive: true, 
-        maintainAspectRatio: false, 
-      },
+  dataPointsThree = await response.json();
+  let x = "x";
+  let y = "y";
+  dataPointsThree = dataPointsThree.map(dataPointsThree => Object.assign({
+    x: dataPointsThree[0],
+    y: dataPointsThree[1]
+  }, ));
+  console.log(dataPointsThree);
+  var xAxis = dataPointsThree.map(({
+    x
+  }) => x);
+  var yAxis = dataPointsThree.map(({
+    y
+  }) => y);
+  var myHopeChart = new Chart(ctxThree, {
+    type: 'line',
+    data: {
+      labels: xAxis,
+      datasets: [{
+        label: 'Live Chart',
+        data: yAxis,
+        fill: false,
+        borderColor: '#2196f3',
+        backgroundColor: '#2196f3',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+    },
   });
   updateChart()
 };
@@ -494,35 +502,42 @@ chartThreeBuild();
 
 
 async function updateChart() {
-  var increase=9;
-  let response = await fetch("https://canvasjs.com/services/data/datapoints.php?xstart="+(count=count+1)+"&ystart=10&length=1&type=json");
-    dataPointsThreeNew = await response.json();
-    let x = "x";
-    let y = "y";
-    dataPointsThreeNew = dataPointsThreeNew.map(dataPointsThreeNew => Object.assign({x:dataPointsThreeNew[0],y:dataPointsThreeNew[1]}, ));
-    console.log(dataPointsThreeNew);
-    dataPointsThree.push(dataPointsThreeNew[0]);
-    var xAxis = dataPointsThree.map(({x}) => x);
-    var yAxis = dataPointsThree.map(({y}) => y);
+  var increase = 9;
+  let response = await fetch("https://canvasjs.com/services/data/datapoints.php?xstart=" + (count = count + 1) + "&ystart=10&length=1&type=json");
+  dataPointsThreeNew = await response.json();
+  let x = "x";
+  let y = "y";
+  dataPointsThreeNew = dataPointsThreeNew.map(dataPointsThreeNew => Object.assign({
+    x: dataPointsThreeNew[0],
+    y: dataPointsThreeNew[1]
+  }, ));
+  console.log(dataPointsThreeNew);
+  dataPointsThree.push(dataPointsThreeNew[0]);
+  var xAxis = dataPointsThree.map(({
+    x
+  }) => x);
+  var yAxis = dataPointsThree.map(({
+    y
+  }) => y);
   var myHopeChart = new Chart(ctxThree, {
     type: 'line',
     data: {
-        labels: xAxis,
-        datasets: [{
-            label: 'Live Chart', 
-            data: yAxis, 
-            fill: false,
-            borderColor: '#2196f3', 
-            backgroundColor: '#2196f3', 
-            borderWidth: 1 
-        }]},
-    options: {
-      responsive: true, 
-      maintainAspectRatio: false, 
+      labels: xAxis,
+      datasets: [{
+        label: 'Live Chart',
+        data: yAxis,
+        fill: false,
+        borderColor: '#2196f3',
+        backgroundColor: '#2196f3',
+        borderWidth: 1
+      }]
     },
-});
-  setTimeout(function(){updateChart(); }, 1000);
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+    },
+  });
+  setTimeout(function () {
+    updateChart();
+  }, 1000);
 }
-
-
-
